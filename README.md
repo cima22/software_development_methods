@@ -1,2 +1,2 @@
-# software_development_methods
+# Software Development Methods exercises
 Collection of exercises of the course "Software Development Methods" at Univeristy of Trieste
