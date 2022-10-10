@@ -3,9 +3,15 @@ public class Test{
   Display disp = new Display();
   Calculator calc = new Calculator(disp);
   calc.cipherPressed('1');
-  calc.cipherPressed('0');
+  calc.zeroPressed();
+  calc.zeroPressed();
+  calc.dotPressed();
   calc.cipherPressed('3');
-  calc.cipherPressed('4');
+  calc.plusPressed();
+  calc.cipherPressed('8');
+  calc.cipherPressed('2');
+  calc.dotPressed();
+  calc.cipherPressed('9');
   calc.equalPressed();
  }
 }

@@ -2,7 +2,6 @@ class Calculator{
  final Display display;
  final int NUMBER_SIZE = 15;
  float result;
- float mem1;
  char[] input;
  int index;
  boolean is_float;
@@ -11,7 +10,6 @@ class Calculator{
  Calculator(Display display){
   this.display = display;
   this.result = 0;
-  this.mem1 = 0;
   this.index = -1;
   is_float = false;
   input = new char[NUMBER_SIZE];
@@ -34,28 +32,28 @@ class Calculator{
  void plusPressed(){
   display.display("+");
   op = '+';
-  mem1 = inputValue();
+  result = inputValue();
   resetInput();
  }
 
  void minusPressed(){
   display.display("-");
   op = '-';
-  mem1 = inputValue();
+  result = inputValue();
   resetInput();
  }
 
  void productPressed(){
   display.display("*");
   op = '*';
-  mem1 = inputValue();
+  result = inputValue();
   resetInput();
  }
 
  void dividePressed(){
   display.display("/");
   op = '/';
-  mem1 = inputValue();
+  result = inputValue();
   resetInput();
  }
 
@@ -68,11 +66,38 @@ class Calculator{
  void cipherPressed(char cipher){
   increaseIndex();
   input[index] = cipher;
+  display.display(""+cipher);
  }
 
- void dotPressed(){}
+ void dotPressed(){
+  is_float = true;
+  increaseIndex();
+  input[index] = '.';
+  display.display(".");
+ }
 
  void equalPressed(){
-  display.display(String.valueOf(input));
+  switch(op){
+	  case '+':
+		  result += inputValue();
+		  break;
+	  case '-':
+		  result -= inputValue();
+		  break;
+	  case '*':
+		  result *= inputValue();
+		  break;
+	  case '/':
+		  if(inputValue() == 0){
+			  display.display("Cannot divide by 0!");
+			  resetInput();
+			  return;
+		  }
+		  result /= inputValue();
+		  break;
+	  default:
+		  return;
+  }
+  display.display(String.valueOf(result));
  }
 }
